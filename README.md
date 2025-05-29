@@ -27,3 +27,29 @@ terraform {
     }
   }
 }
+```
+
+##  Using the Module 📦
+
+```hcl
+
+module "plex_server" {
+  source = "git::https://github.com/gonzalezben81/plex-digital-ocean.git?ref=v1.0.0"
+
+  do_token     = var.do_token
+  ssh_key_name = var.ssh_key_name
+  droplet_name = var.droplet_name
+  region       = var.region
+  droplet_size = var.droplet_size
+  image_type   = var.image_type
+}
+
+```
+
+## Digital Ocean Images
+
+https://docs.digitalocean.com/products/droplets/details/images/
+
+For a comprehensive list of Digital Ocean droplet options, please see the link below:
+
+https://slugs.do-api.dev/
