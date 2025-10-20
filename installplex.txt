@@ -1,0 +1,38 @@
+    1  echo deb https://downloads.plex.tv/repo/deb public main | sudo tee /etc/apt/sources.list.d/plexmediaserver.list
+    2  sudo -i
+    3  exit
+    4  echo deb https://downloads.plex.tv/repo/deb public main | sudo tee /etc/apt/sources.list.d/plexmediaserver.list
+    5  sudo apt-get update
+    6  curl https://downloads.plex.tv/plex-keys/PlexSign.key | sudo apt-key add -
+    7  echo deb https://downloads.plex.tv/repo/deb public main | sudo tee /etc/apt/sources.list.d/plexmediaserver.list
+    8  sudo apt-get update
+    9  sudo apt install plexmediaserver
+   10  sudo systemctl status plexmediaserver
+   11  sudo systemctl enable plexmediaserver.service
+   12  sudo systemctl status plexmediaserver.service
+   13  exit
+   14  sudo ufw allow 32400
+   15  sudo nano /etc/ssh/sshd_config
+   16  sudo service ssh restart
+   17  exit
+   18  ls
+   19  sudo apt-get update
+   20  upgradeable
+   21  plex --version
+   22  plex -v
+   23  plex
+   24  sudo -i
+   25  ls
+   26  plex -version
+   27  plex --version
+   28  plexmediaserver
+   29  plexmediaserver -v
+   30  sudo systemctl status plexmediaserver
+   31  exit
+   32  ifconfig
+   33  sudo apt install net-tools
+   34  sudo apt-get update
+   35  sudo apt-get upgrade
+   36  exit
+   37  history
+   38  history > installplex.txt
