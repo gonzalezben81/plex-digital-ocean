@@ -1,3 +1,11 @@
+---
+title: Home
+layout: home
+nav_order: 1
+permalink: /
+---
+
+
 # DigitalOcean Plex Media Server Terraform Module
 
 This Terraform configuration deploys a Plex Media Server on a DigitalOcean Droplet using `cloud-init` for initial setup. It includes automatic package installation, user creation, and firewall configuration.
