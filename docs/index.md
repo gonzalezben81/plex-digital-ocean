@@ -4,6 +4,7 @@ This Terraform configuration deploys a Plex Media Server on a DigitalOcean Dropl
 
 ## 🚀 Features
 
+
 - Creates a Droplet with a specified size, region, and image.
 - Installs Plex Media Server via `cloud-init`.
 - Adds an SSH key for secure access.
