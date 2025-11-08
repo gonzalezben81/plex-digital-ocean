@@ -10,43 +10,44 @@ on:
   push:
     branches:
       - main
-      
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
-  contents: read
+  contents: write  # Allow pushing tags/commits
   pages: write
-  id-token: write      
+  id-token: write
 
 jobs:
   bump-and-release:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout repository
       - name: Checkout repo
         uses: actions/checkout@v3
         with:
-          ref: ${{ github.ref }}
-      - name: 'cat package.json'
-        run: cat ./package.json
-      - name: 'Automated Version Bump'
+          fetch-depth: 0  # required for pushing tags
+
+      - name: Automated Version Bump
         id: version-bump
-        uses: 'phips28/gh-action-bump-version@master'
+        uses: phips28/gh-action-bump-version@v9
         with:
           tag-prefix: 'v'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: 'cat package.json'
-        run: cat ./package.json
-      - name: 'Output Step'
+      
+      - name: Output new tag
+        run: echo "New tag: ${{ steps.version-bump.outputs.new_tag }}"
+
+      - name: Push changes & tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git push origin main --follow-tags
         env:
-          NEW_TAG: ${{ steps.version-bump.outputs.newTag }}
-        run: echo "new tag $NEW_TAG"
-      # 4️⃣ Create GitHub release
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Create GitHub release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ steps.bump_version.outputs.new_version }}
+          tag_name: ${{ steps.version-bump.outputs.new_tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
