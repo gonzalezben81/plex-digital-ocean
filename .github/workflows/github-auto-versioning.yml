@@ -13,15 +13,12 @@ on:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 jobs:
   bump-and-release:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
@@ -35,29 +32,40 @@ jobs:
             git push origin main
           fi
 
-      - name: Show current VERSION
-        run: cat VERSION
+      - name: Read current version
+        id: read-version
+        run: |
+          CURRENT=$(cat VERSION)
+          echo "current=$CURRENT" >> $GITHUB_OUTPUT
 
       - name: Bump version
-        id: version-bump
-        uses: phips28/gh-action-bump-version@master
-        with:
-          version-type: ${{ github.event.inputs.part }}
-          tag-prefix: "v"
-          push: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Push tag explicitly
+        id: bump-version
         run: |
-          git tag ${{ steps.version-bump.outputs.new_tag }}
-          git push origin ${{ steps.version-bump.outputs.new_tag }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          IFS='.' read -r MAJOR MINOR PATCH <<< "${{ steps.read-version.outputs.current }}"
+          PART="${{ github.event.inputs.part }}"
+          if [ "$PART" = "major" ]; then
+            MAJOR=$((MAJOR+1))
+            MINOR=0
+            PATCH=0
+          elif [ "$PART" = "minor" ]; then
+            MINOR=$((MINOR+1))
+            PATCH=0
+          else
+            PATCH=$((PATCH+1))
+          fi
+          NEW_VERSION="$MAJOR.$MINOR.$PATCH"
+          echo $NEW_VERSION > VERSION
+          echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add VERSION
+          git commit -m "Bump version to $NEW_VERSION"
+          git tag "v$NEW_VERSION"
+          git push origin main --tags
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ steps.version-bump.outputs.new_tag }}
+          tag_name: v${{ steps.bump-version.outputs.new_version }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
