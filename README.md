@@ -1,3 +1,10 @@
+[![Build](https://github.com/gonzalezben81/plex-digital-ocean/actions/workflows/github-auto-versioning.yml/badge.svg)](https://github.com/gonzalezben81/plex-digital-ocean/actions/workflows/github-auto-versioning.yml)
+[![Release](https://img.shields.io/github/v/release/gonzalezben81/plex-digital-ocean?include_prereleases)](https://github.com/gonzalezben81/plex-digital-ocean/releases)
+[![License](https://img.shields.io/github/license/gonzalezben81/plex-digital-ocean)](LICENSE)
+[![DigitalOcean](https://img.shields.io/badge/Cloud-DigitalOcean-0080FF?logo=digitalocean&logoColor=white)](https://www.digitalocean.com)
+
+
+
 # DigitalOcean Plex Media Server Terraform Module
 
 This Terraform configuration deploys a Plex Media Server on a DigitalOcean Droplet using `cloud-init` for initial setup. It includes automatic package installation, user creation, and firewall configuration.
