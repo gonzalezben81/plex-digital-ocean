@@ -75,9 +75,14 @@ color_scheme: light
 nav_error_report: true # default is false/nil.
 
 # External navigation links
-nav_external_links:
-  opens_in_new_tab: true
-  hide_icon: false
+# nav_external_links:
+#   opens_in_new_tab: true
+#   hide_icon: false
+
+aux_links:
+  Just the Docs on GitHub:
+    - https://github.com/just-the-docs/just-the-docs
+
 
 liquid:
   error_mode: strict
