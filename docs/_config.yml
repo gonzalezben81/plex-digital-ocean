@@ -74,6 +74,11 @@ color_scheme: light
 # Show navigation error report
 nav_error_report: true # default is false/nil.
 
+# External navigation links
+nav_external_links:
+  opens_in_new_tab: true
+  hide_icon: false
+
 liquid:
   error_mode: strict
   strict_filters: true
