@@ -62,7 +62,7 @@ jobs:
           echo $NEW_VERSION > VERSION
           echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
 
-      # 5️⃣ Commit changes, tag, and push
+      # 5️⃣ Commit, tag, and push
       - name: Commit, tag, and push
         run: |
           git config user.name "github-actions[bot]"
