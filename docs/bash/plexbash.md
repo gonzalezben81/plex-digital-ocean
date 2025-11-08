@@ -108,14 +108,14 @@ chmod +x install_plex.sh
 deb https://downloads.plex.tv/repo/deb public main
 ```
 
-+Adds the Plex signing key for package verification.
++ Adds the Plex signing key for package verification.
 
-+Updates package lists and installs plexmediaserver.
++ Updates package lists and installs plexmediaserver.
 
-+Enables Plex to start automatically on system boot.
++ Enables Plex to start automatically on system boot.
 
-+Opens the Plex default port (32400) in the firewall.
++ Opens the Plex default port (32400) in the firewall.
 
-+Installs net-tools for network commands like ifconfig.
++ Installs net-tools for network commands like ifconfig.
 
-+Updates and upgrades all system packages.
++ Updates and upgrades all system packages.

@@ -13,7 +13,7 @@ defaults:
       layout: "default"
 
 aux_links:
-  AWS Cloud Templates Repo: https://github.com/gonzalezben81/plex-digital-ocean.git
+  Plex Digital Ocean Repo: https://github.com/gonzalezben81/plex-digital-ocean.git
   
 # Makes Aux links open in a new tab. Default is false
 aux_links_new_tab: true  
