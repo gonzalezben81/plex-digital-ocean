@@ -107,8 +107,8 @@ terraform apply -var="region=nyc1" -var="droplet_name=my-plex-droplet"
 
 ## Digital Ocean Images
 
-https://docs.digitalocean.com/products/droplets/details/images/
+<https://docs.digitalocean.com/products/droplets/details/images/>
 
 For a comprehensive list of Digital Ocean droplet options, please see the link below:
 
-https://slugs.do-api.dev/
+<https://slugs.do-api.dev/>
