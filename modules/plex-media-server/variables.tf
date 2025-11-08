@@ -3,7 +3,7 @@ variable "do_token" {
   type        = string
 }
 
-variable "ssh_key_name" {
+variable "plex_ssh_key_name" {
   description = "DigitalOcean SSH Key Name"
   type        = string
 }
