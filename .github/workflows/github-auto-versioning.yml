@@ -38,9 +38,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Show new tag
-        run: echo "New tag: ${{ steps.version-bump.outputs.new_tag }}"
-
       - name: Push changes & tag
         run: |
           git config user.name "github-actions[bot]"
