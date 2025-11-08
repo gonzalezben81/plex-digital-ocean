@@ -1,0 +1,4 @@
+echo "0.1.0" > VERSION
+git add VERSION
+git commit -m "Add initial VERSION file"
+git push origin main
