@@ -19,22 +19,23 @@ jobs:
       # 1️⃣ Checkout repository
       - name: Checkout repo
         uses: actions/checkout@v3
-
-      # 2️⃣ Bump version
-      - name: Bump version
-        id: bump_version
-        uses: phips28/gh-action-bump-version@v11
         with:
-          part: ${{ github.event.inputs.part || 'patch' }}
-          tag_prefix: "v"
+          ref: ${{ github.ref }}
+      - name: 'cat package.json'
+        run: cat ./package.json
+      - name: 'Automated Version Bump'
+        id: version-bump
+        uses: 'phips28/gh-action-bump-version@master'
+        with:
+          tag-prefix: 'v'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # 3️⃣ Push the new version & tag
-      - name: Push changes
-        run: |
-          git push origin main --follow-tags
-
+      - name: 'cat package.json'
+        run: cat ./package.json
+      - name: 'Output Step'
+        env:
+          NEW_TAG: ${{ steps.version-bump.outputs.newTag }}
+        run: echo "new tag $NEW_TAG"
       # 4️⃣ Create GitHub release
       - name: Create GitHub release
         uses: softprops/action-gh-release@v1
