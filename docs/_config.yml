@@ -14,6 +14,8 @@ defaults:
 
 aux_links:
   Plex Digital Ocean Repo: https://github.com/gonzalezben81/plex-digital-ocean.git
+  Digital Ocean Images: https://docs.digitalocean.com/products/droplets/details/images/
+  Digital Ocean Droplet Options: https://slugs.do-api.dev/
   
 # Makes Aux links open in a new tab. Default is false
 aux_links_new_tab: true  
@@ -73,15 +75,6 @@ color_scheme: light
 
 # Show navigation error report
 nav_error_report: true # default is false/nil.
-
-# External navigation links
-# nav_external_links:
-#   opens_in_new_tab: true
-#   hide_icon: false
-
-aux_links:
-  Just the Docs on GitHub:
-    - https://github.com/just-the-docs/just-the-docs
 
 
 liquid:
