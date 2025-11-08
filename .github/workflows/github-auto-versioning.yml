@@ -1,0 +1,44 @@
+name: Terraform Module Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      part:
+        description: 'Which part to bump (major, minor, patch)'
+        required: true
+        default: 'patch'
+  push:
+    branches:
+      - main
+
+jobs:
+  bump-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Checkout repository
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      # 2️⃣ Bump version
+      - name: Bump version
+        id: bump_version
+        uses: phips28/gh-action-bump-version@v9
+        with:
+          part: ${{ github.event.inputs.part || 'patch' }}
+          tag_prefix: "v"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # 3️⃣ Push the new version & tag
+      - name: Push changes
+        run: |
+          git push origin main --follow-tags
+
+      # 4️⃣ Create GitHub release
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.bump_version.outputs.new_version }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
