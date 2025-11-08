@@ -50,12 +50,13 @@ provider "digitalocean" {
 module "plex_server" {
   source = "git::https://github.com/gonzalezben81/plex-digital-ocean.git?ref=v1.x.x"
 
-  do_token     = var.do_token
-  ssh_key_name = var.ssh_key_name
+  do_token = var.do_token
+  plex_ssh_key_name = var.plex_ssh_key_name
   droplet_name = var.droplet_name
-  region       = var.region
+  droplet_region = var.droplet_region
   droplet_size = var.droplet_size
-  image_type   = var.image_type
+  droplet_image = var.droplet_image
+
 }
 
 ```
@@ -72,41 +73,40 @@ variable "do_token" {
 variable "droplet_name" {
   type        = string
   description = "Name of the droplet in the Digital Ocean console"
-  default = "plex-media-server"
+  default     = "plex-media-server"
 }
 
 variable "droplet_size" {
   type        = string
   description = "Droplet size"
-  defautl = "s-1vcpu-1gb"
+  default     = "s-1vcpu-1gb"
 }
 
 variable "droplet_image" {
   type        = string
   description = "Droplet image type"
-  default = "ubuntu-22-04-x64"
+  default     = "ubuntu-22-04-x64"
 
 }
 
-variable "ssh_key_name" {
-  type = string
+variable "plex_ssh_key_name" {
+  type        = string
   description = "SSH key used to connect to the droplet"
-  
+
 }
 
-variable "droplet_region"{
-  type = string
+variable "droplet_region" {
+  type        = string
   description = "Digital Ocean region to deploye to"
-  default = "nyc3"
+  default     = "nyc3"
 
 }
-
 ```
 
 
 ```hcl
 
-terraform apply -var="region=nyc1" -var="droplet_name=my-plex-droplet"
+terraform apply -var="droplet_region=nyc1" -var="droplet_name=my-plex-droplet" -var="plex_ssh_key_name=key-name" -var="droplet_image=ubuntu-24-04-x64"
 
 ```
 
