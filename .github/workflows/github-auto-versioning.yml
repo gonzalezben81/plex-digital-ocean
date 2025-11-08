@@ -48,8 +48,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Show new tag
-        run: echo "New tag: ${{ steps.version-bump.outputs.new_tag }}"
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@v1
