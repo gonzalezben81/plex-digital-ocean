@@ -23,7 +23,7 @@ jobs:
       # 2️⃣ Bump version
       - name: Bump version
         id: bump_version
-        uses: phips28/gh-action-bump-version@v9
+        uses: phips28/gh-action-bump-version@v11
         with:
           part: ${{ github.event.inputs.part || 'patch' }}
           tag_prefix: "v"
