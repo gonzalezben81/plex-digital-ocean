@@ -48,9 +48,9 @@ module "plex_server" {
   do_token     = var.do_token
   ssh_key_name = var.ssh_key_name
   droplet_name = var.droplet_name
-  region       = var.region
+  region       = var.droplet_region
   droplet_size = var.droplet_size
-  image_type   = var.image_type
+  image_type   = var.droplet_image
 }
 
 ```
