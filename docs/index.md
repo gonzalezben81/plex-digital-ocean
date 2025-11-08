@@ -76,7 +76,7 @@ variable "droplet_size" {
   defautl = "s-1vcpu-1gb"
 }
 
-variable "image_type" {
+variable "droplet_image" {
   type        = string
   description = "Droplet image type"
   default = "ubuntu-22-04-x64"
@@ -89,9 +89,9 @@ variable "ssh_key_name" {
   
 }
 
-variable "region"{
+variable "droplet_region"{
   type = string
-  description = "Digital Ocean region to deploye to"
+  description = "Digital Ocean region to deploy to"
   default = "nyc3"
 
 }
