@@ -1,6 +1,6 @@
-[![Build](https://github.com/gonzalezben81/plex-digital-ocean/actions/workflows/github-auto-versioning.yml/badge.svg)](https://github.com/gonzalezben81/plex-digital-ocean/actions/workflows/github-auto-versioning.yml)
-[![Release](https://img.shields.io/github/v/release/gonzalezben81/plex-digital-ocean?include_prereleases)](https://github.com/gonzalezben81/plex-digital-ocean/releases)
-[![License](https://img.shields.io/github/license/gonzalezben81/plex-digital-ocean)](LICENSE/LICENSE.txt)
+[![Build](https://github.com/gonzalezben81/terraform-digitalocean-plex-digital-ocean/actions/workflows/github-auto-versioning.yml/badge.svg)](https://github.com/gonzalezben81/terraform-digitalocean-plex-digital-ocean/actions/workflows/github-auto-versioning.yml)
+[![Release](https://img.shields.io/github/v/release/gonzalezben81/terraform-digitalocean-plex-digital-ocean?include_prereleases)](https://github.com/gonzalezben81/terraform-digitalocean-plex-digital-ocean/releases)
+[![License](https://img.shields.io/github/license/gonzalezben81/terraform-digitalocean-plex-digital-ocean)](LICENSE/LICENSE.txt)
 [![DigitalOcean](https://img.shields.io/badge/Cloud-DigitalOcean-0080FF?logo=digitalocean&logoColor=white)](https://www.digitalocean.com)
 
 
@@ -48,16 +48,17 @@ provider "digitalocean" {
 ```hcl
 
 module "plex_server" {
-  source = "git::https://github.com/gonzalezben81/plex-digital-ocean.git?ref=v1.x.x"
+  source  = "gonzalezben81/plex-media-server/digitalocean"
+  version = "0.1.18"
 
-  do_token = var.do_token
+  do_token          = var.do_token
   plex_ssh_key_name = var.plex_ssh_key_name
-  droplet_name = var.droplet_name
-  droplet_region = var.droplet_region
-  droplet_size = var.droplet_size
-  droplet_image = var.droplet_image
-
+  droplet_name      = var.droplet_name
+  droplet_region    = var.droplet_region
+  droplet_size      = var.droplet_size
+  droplet_image     = var.droplet_image
 }
+
 
 ```
 
@@ -109,6 +110,30 @@ variable "droplet_region" {
 terraform apply -var="droplet_region=nyc1" -var="droplet_name=my-plex-droplet" -var="plex_ssh_key_name=key-name" -var="droplet_image=ubuntu-24-04-x64"
 
 ```
+
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|--------------|------|----------|----------|
+| do_token | DigitalOcean API token | string | n/a | yes |
+| plex_ssh_key_name | SSH key used to connect to the droplet | string | n/a | yes |
+| droplet_name | Name of the droplet | string | `"plex-media-server"` | no |
+| droplet_size | Droplet size | string | `"s-1vcpu-1gb"` | no |
+| droplet_image | Droplet image type | string | `"ubuntu-22-04-x64"` | no |
+| droplet_region | DigitalOcean region | string | `"nyc3"` | no |
+
+## Outputs
+
+| Name | Description |
+|------|--------------|
+| droplet_ip | The Droplet's public IPv4 address |
+| droplet_id | The ID of the Droplet |
+| droplet_size | The Droplet size slug |
+| droplet_hourly_cost | Hourly cost of the Droplet |
+| droplet_monthly_cost | Monthly cost of the Droplet |
+| droplet_tags | Tags associated with the Droplet |
+
 
 ## Digital Ocean Images
 

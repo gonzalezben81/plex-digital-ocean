@@ -27,6 +27,7 @@ This Terraform configuration deploys a Plex Media Server on a DigitalOcean Dropl
 
 ## 🔧 Terraform Provider
 
+
 ```hcl
 terraform {
   required_providers {
