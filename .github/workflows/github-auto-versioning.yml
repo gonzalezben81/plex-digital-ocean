@@ -12,7 +12,7 @@ on:
       - main
 
 permissions:
-  contents: write  # required to push commits and tags
+  contents: write
   pages: write
   id-token: write
 
@@ -21,13 +21,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout repository
       - name: Checkout repo
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      # 2️⃣ Ensure VERSION file exists
       - name: Ensure VERSION exists
         run: |
           if [ ! -f VERSION ]; then
@@ -37,14 +35,12 @@ jobs:
             git push origin main
           fi
 
-      # 3️⃣ Show current version for debugging
       - name: Show current VERSION
         run: cat VERSION
 
-      # 4️⃣ Bump version
       - name: Bump version
         id: version-bump
-        uses: 'phips28/gh-action-bump-version@master'
+        uses: phips28/gh-action-bump-version@master
         with:
           version-type: ${{ github.event.inputs.part }}
           tag-prefix: "v"
@@ -52,11 +48,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # 5️⃣ Show new tag for debugging
       - name: Show new tag
         run: echo "New tag: ${{ steps.version-bump.outputs.new_tag }}"
 
-      # 6️⃣ Create GitHub release
       - name: Create GitHub release
         uses: softprops/action-gh-release@v1
         with:
