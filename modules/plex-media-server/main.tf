@@ -1,3 +1,15 @@
+terraform {
+  required_providers {
+    digitalocean = {
+      source  = "digitalocean/digitalocean"
+      version = "~> 2.68.0"
+    }
+  }
+
+  required_version = ">= 1.5.0"
+}
+
+
 
 # Create the DigitalOcean Droplet
 resource "digitalocean_droplet" "plex_media_server" {
