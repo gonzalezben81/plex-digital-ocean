@@ -43,7 +43,7 @@ terraform {
 ```hcl
 
 module "plex_server" {
-  source = "git::https://github.com/gonzalezben81/plex-digital-ocean.git?ref=v1.x.x"
+  source = "git::https://github.com/gonzalezben81/plex-digital-ocean/modules/plex-media-server.git?ref=v1.x.x"
 
   do_token     = var.do_token
   ssh_key_name = var.ssh_key_name
