@@ -1,4 +1,7 @@
-
+provider "digitalocean" {
+  # optional: if using alias, configure it here
+  # token = var.do_token
+}
 # Create the DigitalOcean Droplet
 resource "digitalocean_droplet" "plex_media_server" {
   name   = var.droplet_name
