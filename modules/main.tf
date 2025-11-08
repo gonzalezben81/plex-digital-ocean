@@ -1,28 +1,10 @@
-terraform {
-  required_providers {
-    digitalocean = {
-      source  = "digitalocean/digitalocean"
-      version = "~> 2.25.0" # Use the latest stable version
-    }
-  }
-}
-
-# Provider configuration
-provider "digitalocean" {
-  token = var.do_token # Ensure this variable is defined in your Terraform variables file
-}
-
-# Retrieve SSH key information
-data "digitalocean_ssh_key" "ssh" {
-  name = "finalrstudio" # Replace with the actual name of your SSH key in DigitalOcean
-}
 
 # Create the DigitalOcean Droplet
-resource "digitalocean_droplet" "example" {
-  name   = "plex-droplet"
-  region = "nyc3"             # Replace with your preferred region
-  size   = "s-1vcpu-1gb"      # Choose a size suitable for your application
-  image  = "ubuntu-22-04-x64" # Ensure the image ID is available on DigitalOcean
+resource "digitalocean_droplet" "plex_media_server" {
+  name   = var.droplet_name
+  region = var.droplet_region           # Replace with your preferred region
+  size   = var.droplet_size      # Choose a size suitable for your application
+  image  = var.droplet_image # Ensure the image ID is available on DigitalOcean
 
   ssh_keys = [data.digitalocean_ssh_key.ssh.id]
 
@@ -59,9 +41,4 @@ final_message: "The system is finally up, and the plex media server is running!"
 EOT
 
   tags = ["plex-media-server"]
-}
-
-# Output the droplet IP
-output "droplet_ip" {
-  value = digitalocean_droplet.example.ipv4_address
 }

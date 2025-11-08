@@ -25,15 +25,22 @@ This Terraform configuration deploys a Plex Media Server on a DigitalOcean Dropl
 
 ## 🔧 Terraform Provider
 
+`providers.tf`
 ```hcl
 terraform {
   required_providers {
     digitalocean = {
       source  = "digitalocean/digitalocean"
-      version = "~> 2.25.0"
+      version = "~> 2.25.0" # Use the latest stable version
     }
   }
 }
+
+# Provider configuration
+provider "digitalocean" {
+  token = var.do_token # Ensure this variable is defined in your Terraform variables file
+}
+
 ```
 
 ##  Using the Module 📦
@@ -74,7 +81,7 @@ variable "droplet_size" {
   defautl = "s-1vcpu-1gb"
 }
 
-variable "image_type" {
+variable "droplet_image" {
   type        = string
   description = "Droplet image type"
   default = "ubuntu-22-04-x64"
@@ -87,7 +94,7 @@ variable "ssh_key_name" {
   
 }
 
-variable "region"{
+variable "droplet_region"{
   type = string
   description = "Digital Ocean region to deploye to"
   default = "nyc3"

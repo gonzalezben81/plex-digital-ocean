@@ -16,6 +16,7 @@ aux_links:
   Plex Digital Ocean Repo: https://github.com/gonzalezben81/plex-digital-ocean.git
   Digital Ocean Images: https://docs.digitalocean.com/products/droplets/details/images/
   Digital Ocean Droplet Options: https://slugs.do-api.dev/
+  Droplet Info: https://docs.digitalocean.com/reference/terraform/reference/data-sources/droplet/
   
 # Makes Aux links open in a new tab. Default is false
 aux_links_new_tab: true  
