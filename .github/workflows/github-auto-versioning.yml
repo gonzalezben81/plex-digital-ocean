@@ -31,7 +31,7 @@ jobs:
 
       - name: Bump version
         id: version-bump
-        uses: phips28/gh-action-bump-version@v9
+        uses: 'phips28/gh-action-bump-version@master'
         with:
           part: ${{ github.event.inputs.part || 'patch' }}
           tag-prefix: "v"
